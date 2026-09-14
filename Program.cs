@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-//det initiala värdet på text är bara för testning
+//detta värdet var bara till för testning.
 //String text = "29535123p48723487597645723645";
 
 //initielt sätter färgen för utskrifft till vit
