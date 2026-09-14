@@ -3,12 +3,17 @@
 //det initiala värdet på text är bara för testning
 //String text = "29535123p48723487597645723645";
 
+//initielt sätter färgen för utskrifft till vit
 Console.ForegroundColor = ConsoleColor.White;
+
+//Hanterar sökning av substrängar och retunerar dem som long
 static long FindNumberSubstring(int startHere, string myText) {
     long number = 0;
     String numbers ="";
     String sameStartandEnd = "";
     bool foundmatch = false;
+
+    //letar efter tal
     for (int i = startHere; i < myText.Length; i++) {
         bool foundNumber = long.TryParse(myText[i].ToString(), out number);
         if (foundNumber) { 
@@ -21,6 +26,7 @@ static long FindNumberSubstring(int startHere, string myText) {
     
     }
 
+    //letar efter strängar som startar och slutar på samma tal
     for (int i = 0; i < numbers.Length; i++) { 
         if (i > 0 && numbers[i] == numbers[0])
         {
@@ -31,6 +37,7 @@ static long FindNumberSubstring(int startHere, string myText) {
         sameStartandEnd += numbers[i];
     }
 
+    //konventerar substrängen till en long och retunerar den. retunerar 0 om ingen godkänd substräng hittas.
     if (foundmatch)
     {
         number = long.Parse(sameStartandEnd);
@@ -44,7 +51,7 @@ static long FindNumberSubstring(int startHere, string myText) {
 
     
 }
-
+//Hantering av inmatning från användaren
 static string GetInput() {
     string myInput = "";
     try {
@@ -64,6 +71,15 @@ static string GetInput() {
 void PrintInput(){
     long total = 0; // sparar det total värded av alla substrängar som startar och slutar på samma tal.
     string mytext = GetInput();
+
+    /*/
+     * 
+     * Skirver ut strängen med substrängen markerat som rött om en hittas.
+     * Kallar på FindNumberSubstring() för att genomföra det.
+     * Den andra for loopen är den som skriver och strängen. samt avgör när en bokstav ska vara vit eller röd.
+     * Den andra for loopen körs bara när n > 0. För om n är större än 0 så betyder det att en substräng har hittas.
+     * 
+    /*/
     for (int i = 0; i < mytext.Length; i++)
     {
         long n = FindNumberSubstring(i, mytext);
@@ -73,7 +89,6 @@ void PrintInput(){
 
             for (int j = 0; j < mytext.Length; j++)
             {
-
 
                 if (j == i && n > 0)
                 {
@@ -97,7 +112,7 @@ void PrintInput(){
 
     }
 
-    Console.WriteLine($"Total sum of all red substrings: {total}");
+    Console.WriteLine($"Summering av alla substrängar:{total}");
 
 }
 
