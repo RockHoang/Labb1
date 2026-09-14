@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
-String text = "29535123p48723487597645723645";
-long total = 0;
+//det initiala värdet på text är bara för testning
+//String text = "29535123p48723487597645723645";
 
 Console.ForegroundColor = ConsoleColor.White;
 static long FindNumberSubstring(int startHere, string myText) {
@@ -45,38 +45,60 @@ static long FindNumberSubstring(int startHere, string myText) {
     
 }
 
-for (int i = 0; i < text.Length; i++) {
-    long n = FindNumberSubstring(i, text);
-    if (n > 0) {
-        total += n;
-
-        for (int j = 0; j < text.Length; j++)
-        {
-
-
-            if (j == i && n > 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{text[j]}");
-
-            }
-            else if (j > i && text[j].Equals(text[i]))
-            {
-                Console.Write($"{text[j]}");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            else
-            {
-                Console.Write($"{text[j]}");
-            }
-
-        }
-        Console.WriteLine();
+static string GetInput() {
+    string myInput = "";
+    try {
+        Console.WriteLine("Detta program kommer leta efter substrängar som startar och slutar på samma tal.");
+        Console.WriteLine("För att sedan skriva ut dem i rött och beräkna den totala summa av dem.");
+        Console.WriteLine("Var snäll och skriv in en sträng med siffror och bokstäver!");
+        myInput = Console.ReadLine();
     }
-    
-    
+    catch {
+        Console.WriteLine("Ett fel uppstod, försök igen!");
+    }
+
+
+    return myInput;
+}
+
+void PrintInput(){
+    long total = 0; // sparar det total värded av alla substrängar som startar och slutar på samma tal.
+    string mytext = GetInput();
+    for (int i = 0; i < mytext.Length; i++)
+    {
+        long n = FindNumberSubstring(i, mytext);
+        if (n > 0)
+        {
+            total += n;
+
+            for (int j = 0; j < mytext.Length; j++)
+            {
+
+
+                if (j == i && n > 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{mytext[j]}");
+
+                }
+                else if (j > i && mytext[j].Equals(mytext[i]))
+                {
+                    Console.Write($"{mytext[j]}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.Write($"{mytext[j]}");
+                }
+
+            }
+            Console.WriteLine();
+        }
+
+    }
+
+    Console.WriteLine($"Total sum of all red substrings: {total}");
 
 }
 
-
-Console.WriteLine($"Total sum of all red substrings: {total}");
+PrintInput();
