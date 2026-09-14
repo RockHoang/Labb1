@@ -9,7 +9,7 @@ Console.ForegroundColor = ConsoleColor.White;
 //Hanterar sökning av substrängar och retunerar dem som long
 static long FindNumberSubstring(int startHere, string myText) {
     long number = 0;
-    String foundNumbers ="";
+    String foundNumbers = "";
     String sameStartandEnd = "";
     bool foundmatch = false;
 
@@ -45,10 +45,9 @@ static long FindNumberSubstring(int startHere, string myText) {
         return number;
     }
     else {
+
         return 0;
     }
-
-
     
 }
 //Hantering av inmatning från användaren
@@ -63,7 +62,6 @@ static string GetInput() {
     catch {
         Console.WriteLine("Ett fel uppstod, försök igen!");
     }
-
 
     return myInput;
 }
