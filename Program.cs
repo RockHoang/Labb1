@@ -89,13 +89,15 @@ void PrintInput(){
 
             for (int j = 0; j < mytext.Length; j++)
             {
-
-                if (j == i && n > 0)
+                //när j = i betyder det att vi är på start talet av substrängen och sätter text färgen till röd.
+                if (j == i)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{mytext[j]}");
 
                 }
+                //när vi hittar samma tal efter att j är större än i, så betyder det att vi är på slut talet av substrängen.
+                //vi återställer då text färgen till vit.
                 else if (j > i && mytext[j].Equals(mytext[i]))
                 {
                     Console.Write($"{mytext[j]}");
@@ -111,9 +113,10 @@ void PrintInput(){
         }
 
     }
-
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine($"Summering av alla substrängar:{total}");
 
 }
 
+//Startar programet
 PrintInput();
