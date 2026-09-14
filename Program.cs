@@ -9,15 +9,15 @@ Console.ForegroundColor = ConsoleColor.White;
 //Hanterar sökning av substrängar och retunerar dem som long
 static long FindNumberSubstring(int startHere, string myText) {
     long number = 0;
-    String numbers ="";
+    String foundNumbers ="";
     String sameStartandEnd = "";
     bool foundmatch = false;
 
     //letar efter tal
     for (int i = startHere; i < myText.Length; i++) {
-        bool foundNumber = long.TryParse(myText[i].ToString(), out number);
-        if (foundNumber) { 
-            numbers += myText[i].ToString();
+        bool isNumber = long.TryParse(myText[i].ToString(), out number);
+        if (isNumber) {
+            foundNumbers += myText[i].ToString();
         }
         else
         {
@@ -27,14 +27,14 @@ static long FindNumberSubstring(int startHere, string myText) {
     }
 
     //letar efter strängar som startar och slutar på samma tal
-    for (int i = 0; i < numbers.Length; i++) { 
-        if (i > 0 && numbers[i] == numbers[0])
+    for (int i = 0; i < foundNumbers.Length; i++) { 
+        if (i > 0 && foundNumbers[i] == foundNumbers[0])
         {
-            sameStartandEnd += numbers[i];
+            sameStartandEnd += foundNumbers[i];
             foundmatch = true;
             break;
         }
-        sameStartandEnd += numbers[i];
+        sameStartandEnd += foundNumbers[i];
     }
 
     //konventerar substrängen till en long och retunerar den. retunerar 0 om ingen godkänd substräng hittas.
